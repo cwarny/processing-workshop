@@ -1,0 +1,394 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    background-color: white;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {	
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;	
+}
+
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+</style>
+<title>Processing basics</title>
+
+</head>
+<body>
+<h1>Processing basics</h1>
+
+<p>by Cédric Warny</p>
+
+<h2>The Interactive Development Environment (IDE)</h2>
+
+<p><img src="img/Processing-IDE.jpg" alt="Processing IDE" /></p>
+
+<p>To print something in the log:</p>
+
+<pre><code>println("Hello world");
+</code></pre>
+
+<h2>Declaring variables</h2>
+
+<p>When you declare a variable, you have to specify its type, like so:</p>
+
+<pre><code>VariableType variableName = variableValue;
+</code></pre>
+
+<p>Variable types can be generic (string, integer) or you can create your own types.</p>
+
+<pre><code>String myString = "Hello"; // The double slash introduces a comment in your code. Every statement in Processing must end with a semi-colon.
+
+int a = 3; // This declares an integers variable named "a". You could have named it whatever you want --as long as the first letter of the name is lowercase.
+
+boolean myBoolean = false; // "boolean" variables are true-false variables.
+
+/* This is a multi-line
+comment. Use this when
+you have a lot to say. */
+
+float x = 4.5; // "float" is the variable type for numbers with decimals. It stands for "floating number".
+</code></pre>
+
+<p>There are two families of variables: <strong>generic</strong> (integer, floating number, boolean, String, etc.) or <strong>created</strong>. Indeed, you can create your own type of variables. These custom variable types are known as <strong>classes</strong>. More on that later.</p>
+
+<p>In general, the first letter of the declared type of a generic variable will be lowercase while the first letter of a created variable type will be uppercase. An exception among generic variable is String, whose first letter is uppercase.</p>
+
+<p>Variable <em>names</em> always start lowercase.</p>
+
+<h2>Declaring methods/functions</h2>
+
+<p>When declaring a method, you have to specify what <em>arguments</em> (or inputs) that function takes and what type of variable that method returns (or outputs), if any:</p>
+
+<pre><code>VariableTypeToReturn myFunctionName(int firstInput, String secondInput) { // Method names start with lowercase.
+
+    // …
+
+    VariableTypeToReturn x = … ;
+
+    return x;
+}
+</code></pre>
+
+<p>Example:</p>
+
+<pre><code>int addTwoNumbers(int firstNumber, int secondNumber) {
+    int sum = firstNumber + secondNumber;
+    return sum;
+}
+</code></pre>
+
+<p>However, a function does not necessarily need to return anything. In that case, we write "void" as the variable type returned by the function:</p>
+
+<pre><code>int a = 3;
+
+void addAnumberToA(int b) {
+    a = a + b;
+}
+</code></pre>
+
+<h2>Calling functions</h2>
+
+<pre><code>int n = addTwoNumbers(3,4); // A function that returns something needs to have a variable ready to receive what it returns --here, "c".
+
+println(n); // Prints 7 in the log.
+
+int a = 3;
+addAnumberToA(4); // A function that does not return anything does not need to have a variable ready to receives its output.
+
+println(a); // Prints 7 in the log.
+</code></pre>
+
+<h2>Creating classes</h2>
+
+<p>To create a new variable type, you have to define what that variable type does and how it works. You encapsulate all that in a <em>class</em>. <strong>A new variable type is known as a class</strong>. Here is how to declare a class:</p>
+
+<pre><code>class Awesome {
+    // Class name always starts with uppercase.
+
+    // What follows is a list of class attributes. It can be anything.
+    String myStringName = "I am awesome";
+    int anAwesomeInteger = 123;
+
+    // What follows is the class constructor. It is a special method that does not require to specify the output type and has to have the same name as the class (it thus has to have an uppercase first letter). The class contstructor is a method that is called when a class is instantiated. More on instatiation later.
+    Awesome() {
+        // …
+    }
+
+    // What follows is a list of methods of the class.
+    void firstMethod() {
+        // …
+    }
+
+    float secondMethod() {
+        // …
+    }
+
+}
+</code></pre>
+
+<p>A class is a bundle of attributes and methods.</p>
+
+<h2>Instantiating a class</h2>
+
+<p>An object is an instance of the class of that object, much like in Plato’s <a href="http://en.wikipedia.org/wiki/Allegory_of_the_Cave">Allegory of the Cave</a>: Plato’s “Ideas” or <a href="http://en.wikipedia.org/wiki/Theory_of_Forms">“Forms”</a> correspond to the Classes; they are the abstract concepts or blueprints behind each object; whereas Plato’s “shadows” correspond to the objects, that is, concrete “materializations” of an Idea or “instantiations” of a Class. For instance, my car out there, a flashy-red Opel Astra, is an instance of the class “car”.</p>
+
+<p>To instantiate a class:</p>
+
+<pre><code>Awesome myAwesomeObject = new Awesome();
+</code></pre>
+
+<p>An object thus becomes just a new, non-generic type of variable. And it can be used as any type of variable: as input or output to functions. Like for generic types of variables, the variable name myAwesomeObject must be typed (Awesome). The only difference is that to create a non-generic type of variable, you have to use the keyword "new". What follows after "new" is a call to the class constructor.</p>
+
+<h2>Object-oriented programming</h2>
+
+<p>The use of classes to bundle a set of attributes and methods together and objects as instances of these classes is known as <strong>object-oriented programming</strong>. This is a great programming paradigm that aims to be as close as possible to the way we humans really think.</p>
+
+<p>An object can have another object as one of his attributes. When thus related, the objects can collaborate by "exchanging messages", or calling functions on each other, like so:</p>
+
+<pre><code>class A {
+
+    B objectB = new B(); // A B object as an attribute of A.
+
+    // The constructor.
+    A() {
+
+    }
+
+}
+
+class B {
+
+    A objectA = new A(); // An A object as an attribute of B.
+
+    // The constructor.
+    B() {
+
+    }
+
+    // A method of the B class.
+    int addTwoNumbers(int x, int y) {
+        return x + y;
+    }
+
+}
+
+A myA = new A();
+
+println(myA.objectB.addTwoNumbers(1,2)); // Prints 3 in the log.
+</code></pre>
+
+<p>We use the "dot notation" to access methods or attributes of objects. For example, "myA.objectB" accesses the attribute "objectB" of the myA object; "myA.objectB.addTwoNumbers(1,2)" accesses the method "addTwoNumbers" of objectB, which is an attribute of the myA object, while passing it the arguments it requires. This communication between object myA and object objectB can be seen as myA sending a "message" to objectB.</p>
+
+<p>A message generally consists in either asking for some information, or suggesting the recipient to change some of his attributes or to send a message to yet another object. As we see, instead of having an almighty central chief interfering with everyone’s actions, action is decentralized and carried out locally by the concerned object. Indeed, who else is better positioned to act on one’s attributes than oneself? Hence the landscape of object-oriented programming is that of a population of interacting objects exchanging messages and influencing one another locally.</p>
+
+<h2>The Processing canvas</h2>
+
+<p>Processing is a programming language focused on creating visualizations. We will draw on a canvas. An important thing to know about the canvas is its coordinate system. Historically, computer rendering environments have the origin of their coordinate system at the <strong>top left</strong> of the canvas, like so:</p>
+
+<p><img src="img/CoordinateSystem.jpg" alt="Coordinate system" /></p>
+
+<h2>Important built-in Processing functions and objects</h2>
+
+<p>A few very basic built-in Processing functions:</p>
+
+<pre><code>size(w,h); // Sets the width (w) and heigh (h) of the canvas.
+
+background(r,g,b); // Sets the red, green, blue components of the canvas' background color.
+
+rect(x,y,w,h); // Sets the (x,y) coordinate of the top-left corner of a rectangle, as well as its width (w) and height (h).
+
+ellipse(x,y,w,h); // Sets the (x,y) coordinate of the center of an ellipse, as well as its width (w) and height (h).
+
+fill(r,g,b); // Sets the red, green, blue components of the color to fill shapes.
+
+stroke(r,g,b); // Sets the red, green, blue components of the color of lines and contours of shapes.
+
+PVector v = new PVector(x,y); // Creates a vector representation of an (x,y) coordinate.
+</code></pre>
+
+<p>Check out many more built-in functions and objects in the excellently written <a href="http://processing.org/reference/">Processing documentation</a>.</p>
+
+<h2>General layout of a Processing sketch</h2>
+
+<p>A Processing sketch is always organized between what the program does <em>before rendering</em> the canvas and what it does <em>while rendering</em> the canvas. Everything that the program must do before rendering the canvas (typically, <strong>loading data</strong> and <strong>setting up objects</strong>) must go in a special function called <em>setup</em>. Everything that the program must do while rendering the canvas must go in the other special function called <em>draw</em>.</p>
+
+<pre><code>void setup() {
+    // Everything that has to be done before rendering.
+}
+
+void draw() {
+    // Everything that has to be done while rendering.
+}
+</code></pre>
+
+<p>The <em>setup</em> function only runs <strong>once</strong> while the <em>draw</em> function <em>loops</em> continuously while the program is running. The <em>draw</em> function, as its name implies, is that one that will render something on the canvas.</p>
+
+<p>The canvas is continuously redrawn/updated at a default rate of 60 frames per second.</p>
+
+<h2>Loading data in a Processing sketch</h2>
+
+<p>The three most popular formats in which data is passed around or stored (when not in a data base) are:</p>
+
+<ul>
+<li>JSON</li>
+<li>CSV</li>
+<li>XML</li>
+</ul>
+
+
+<p>The <a href="http://en.wikipedia.org/wiki/JSON">JSON</a> file format, in particular, is quickly becoming the predominant format in which data is transferred on the Internet. Most data providers on the Internet give access to their data through online APIs (what it stands for doesn't really matter). These APIs receive <em>queries</em> and return data, generally in JSON or XML format.</p>
+
+<p>To load a data file in Processing:</p>
+
+<pre><code>JSONObject json = loadJSONObject("data.json"); // "data.json" is the JSON filename.
+
+XML xml = loadXML("data.xml");
+
+Table myTable = loadTable("data.csv");
+</code></pre>
+
+<p>Read more <a href="http://processing.org/reference/loadJSONObject_.html">here</a>, <a href="http://processing.org/reference/loadXML_.html">here</a> and <a href="http://processing.org/reference/loadTable_.html">here</a>.</p>
+</body>
+</html>
