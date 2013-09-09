@@ -1,7 +1,5 @@
 # Processing basics
 
-by Cédric Warny
-
 ## The Interactive Development Environment (IDE)
 
 ![Processing IDE](img/Processing-IDE.jpg)
