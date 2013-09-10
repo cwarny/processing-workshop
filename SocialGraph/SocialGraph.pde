@@ -46,6 +46,6 @@ void positionFriends() {
     friends.get(i).trot = theta;
     float x = cos(theta) * radius;
     float y = sin(theta) * radius;
-    friends.get(i).tpos = new PVector(width/2 + x, height/2 + y);
+    friends.get(i).pos = new PVector(width/2 + x, height/2 + y);
   }
 }

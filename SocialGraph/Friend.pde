@@ -6,10 +6,8 @@ class Friend {
   ArrayList<Friend> friends = new ArrayList();
   
   PVector pos = new PVector();
-  PVector tpos = new PVector();
   
   float rot = 0;
-  float trot = 0;
   
   int r = 3;
   
@@ -17,11 +15,6 @@ class Friend {
     this.name = name;
     this.id = id;
     this.json = json;
-  }
-  
-  void update() {
-    pos.lerp(tpos, 0.1);
-    rot = lerp(rot,trot,0.1);
   }
   
   void render() {
