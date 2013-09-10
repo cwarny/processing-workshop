@@ -13,7 +13,6 @@ void setup() {
 void draw() {
   background(0);
   for (Friend f: friends) {
-    f.update();
     f.render();
   }
 }
@@ -43,7 +42,7 @@ void connectFriends() {
 void positionFriends() {
   for (int i=0; i<friends.size(); i++) {
     float theta = map(i, 0, friends.size(), 0, TWO_PI);
-    friends.get(i).trot = theta;
+    friends.get(i).rot = theta;
     float x = cos(theta) * radius;
     float y = sin(theta) * radius;
     friends.get(i).pos = new PVector(width/2 + x, height/2 + y);
