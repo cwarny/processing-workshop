@@ -193,7 +193,7 @@ float x = 4.5; // "float" is the variable type for numbers with decimals. It sta
 
 <p>There are two families of variables: <strong>generic</strong> (integer, floating number, boolean, String, etc.) or <strong>created</strong>. Indeed, you can create your own type of variables. These custom variable types are known as <strong>classes</strong>. More on that later.</p>
 
-<p>In general, the first letter of the declared type of a generic variable will be lowercase while the first letter of a created variable type will be uppercase. An exception among generic variable is String, whose first letter is uppercase.</p>
+<p>In general, the first letter of the declared type of a generic variable will be lowercase while the first letter of a created variable type will be uppercase. An exception among generic variable is String, whose first letter is uppercase. Everything in Processing is case-sensitive.</p>
 
 <p>Variable <em>names</em> always start lowercase.</p>
 
@@ -219,7 +219,7 @@ float x = 4.5; // "float" is the variable type for numbers with decimals. It sta
 }
 </code></pre>
 
-<p>However, a function does not necessarily need to return anything. In that case, we write "void" as the variable type returned by the function:</p>
+<p>However, a function does not necessarily need to return anything. That doesn't mean it's a useless function, only that the function operates on external variables it has access to. In the case of these functions, we  write "void" as the variable type returned by the function:</p>
 
 <pre><code>int a = 3;
 
@@ -230,7 +230,7 @@ void addAnumberToA(int b) {
 
 <h2>Calling functions</h2>
 
-<pre><code>int n = addTwoNumbers(3,4); // A function that returns something needs to have a variable ready to receive what it returns --here, "c".
+<pre><code>int n = addTwoNumbers(3,4); // A function that returns something needs to have a variable ready to receive what it returns --here, "n".
 
 println(n); // Prints 7 in the log.
 
@@ -272,14 +272,14 @@ println(a); // Prints 7 in the log.
 
 <h2>Instantiating a class</h2>
 
-<p>An object is an instance of the class of that object, much like in Plato’s <a href="http://en.wikipedia.org/wiki/Allegory_of_the_Cave">Allegory of the Cave</a>: Plato’s “Ideas” or <a href="http://en.wikipedia.org/wiki/Theory_of_Forms">“Forms”</a> correspond to the Classes; they are the abstract concepts or blueprints behind each object; whereas Plato’s “shadows” correspond to the objects, that is, concrete “materializations” of an Idea or “instantiations” of a Class. For instance, my car out there, a flashy-red Opel Astra, is an instance of the class “car”.</p>
+<p>An object is an instance of the class of that object. Classes are the blueprints behind each object, and objects are concrete “materializations” of a Class. For instance, my car out there, a flashy-red Opel Astra, is an instance of the class “car”.</p>
 
 <p>To instantiate a class:</p>
 
 <pre><code>Awesome myAwesomeObject = new Awesome();
 </code></pre>
 
-<p>An object thus becomes just a new, non-generic type of variable. And it can be used as any type of variable: as input or output to functions. Like for generic types of variables, the variable name myAwesomeObject must be typed (Awesome). The only difference is that to create a non-generic type of variable, you have to use the keyword "new". What follows after "new" is a call to the class constructor.</p>
+<p>An object thus becomes just a new, non-generic type of variable. And it can be used as any type of variable: as input or output to functions. Like for generic types of variables, you have to specify the type (Awesome) of the variable name myAwesomeObject. The only difference is that to create a non-generic type of variable, you have to use the keyword "new". What follows after "new" is a call to the class constructor.</p>
 
 <h2>Object-oriented programming</h2>
 
