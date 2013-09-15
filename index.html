@@ -272,7 +272,7 @@ println(a); // Prints 7 in the log.
 
 <p>A class is a bundle of attributes and methods that are related to the class concept. In the above example, we define the Ball class, which is the template of all ball objects. It favors <em>reusabilty</em> in your code. Now, if you want to create a bunch of balls, you don't need to rewrite all the attributes and methods of a ball object, you just <em>instantiate</em> a new ball object. This has the added benefit of making our code more readable:</p>
 
-<pre><code> Ball b1;
+<pre><code>Ball b1;
 Ball b2;
 
 void setup() {
@@ -281,7 +281,7 @@ void setup() {
 }
 
 void draw() {
-    b1.move(); // This is asking the object b1 to move. We call the function move() on the object b1: the syntax for that is objectName.method(arguments). More on that later.
+    b1.move(); // This is asking the object b1 to move. We call the function move() on the object b1: the syntax for that is objectName.methodName(arguments). More on that later.
     b1.bounce();
 
     b2.move();
