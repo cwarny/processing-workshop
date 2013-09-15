@@ -244,31 +244,50 @@ println(a); // Prints 7 in the log.
 
 <p>To create a new variable type, you have to define what that variable type does and how it works. You encapsulate all that in a <em>class</em>. <strong>A new variable type is known as a class</strong>. Here is how to declare a class:</p>
 
-<pre><code>class Awesome {
+<pre><code>class Ball {
     // Class name always starts with uppercase.
 
     // What follows is a list of class attributes. It can be anything.
-    String myStringName = "I am awesome";
-    int anAwesomeInteger = 123;
+    int diameter;
+    float weight;
 
-    // What follows is the class constructor. It is a special method that does not require to specify the output type and has to have the same name as the class (it thus has to have an uppercase first letter). The class contstructor is a method that is called when a class is instantiated. More on instatiation later.
-    Awesome() {
-        // …
+    // What follows is the class constructor. It is a special method that does not require to specify the output type and has to have the same name as the class (it thus has to have an uppercase first letter). The class contstructor is a method that is automatically called when a class is instantiated. More on instatiation later.
+    Ball(int myDiameter, int myWeight) {
+        // In the constructor, you generally assign to the class attributes the value of the variables passed as arguments of the constructor
+        diameter = myDiameter; 
+        weight = myWeight;
     }
 
     // What follows is a list of methods of the class.
-    void firstMethod() {
+    void move() {
         // …
     }
 
-    float secondMethod() {
+    float bounce() {
         // …
     }
 
 }
 </code></pre>
 
-<p>A class is a bundle of attributes and methods.</p>
+<p>A class is a bundle of attributes and methods that are related to the class concept. In the above example, we define the Ball class, which is the template of all ball objects. It favors <em>reusabilty</em> in your code. Now, if you want to create a bunch of balls, you don't need to rewrite all the attributes and methods of a ball object, you just <em>instantiate</em> a new ball object. This has the added benefit of making our code more readable:</p>
+
+<pre><code> Ball b1;
+Ball b2;
+
+void setup() {
+    b1 = new Ball(30,5.6);
+    b2 = new Ball(25,10);
+}
+
+void draw() {
+    b1.move(); // This is asking the object b1 to move. We call the function move() on the object b1: the syntax for that is objectName.method(arguments). More on that later.
+    b1.bounce();
+
+    b2.move();
+    b2.bounce();
+}
+</code></pre>
 
 <h2>Instantiating a class</h2>
 
@@ -276,7 +295,7 @@ println(a); // Prints 7 in the log.
 
 <p>To instantiate a class:</p>
 
-<pre><code>Awesome myAwesomeObject = new Awesome();
+<pre><code>Ball myBall = new Ball();
 </code></pre>
 
 <p>An object thus becomes just a new, non-generic type of variable. And it can be used as any type of variable: as input or output to functions. Like for generic types of variables, you have to specify the type (Awesome) of the variable name myAwesomeObject. The only difference is that to create a non-generic type of variable, you have to use the keyword "new". What follows after "new" is a call to the class constructor.</p>
