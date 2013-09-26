@@ -1,50 +1,44 @@
-JSONArray json;
-ArrayList<Friend> friends = new ArrayList<Friend>();
+HashMap<String, Friend> allfriends = new HashMap<String, Friend>();
 float radius = 250;
 
 void setup() {
-  size(displayWidth, displayHeight);
-  json = loadJSONObject("my_facebook_friends.json").getJSONObject("friends").getJSONArray("data");
-  createFriends(json);
-  connectFriends();
-  positionFriends();
+  size(840, 600);
+
+  JSONObject json = loadJSONObject("data.json");
+  JSONObject friends = json.getJSONObject("friends");
+  JSONArray data = friends.getJSONArray("data");
+
+  for (int i=0; i<data.size(); i++) {
+    String name = data.getJSONObject(i).getString("name");
+    String id = data.getJSONObject(i).getString("id");
+    JSONArray mutualfriends = new JSONArray();
+    if (data.getJSONObject(i).hasKey("mutualfriends")) {
+      mutualfriends = data.getJSONObject(i).getJSONObject("mutualfriends").getJSONArray("data");
+    }
+    Friend f = new Friend(name, id, mutualfriends);
+    allfriends.put(id, f);
+  }
+
+  for (Friend f : allfriends.values()) {
+    f.connectToFriends();
+  }
+
+  int n = 0;
+  for (Friend f : allfriends.values()) {
+    float theta = map(n, 0, allfriends.size(), 0, TWO_PI);
+    float x = cos(theta) * radius;
+    float y = sin(theta) * radius;
+    f.x = width/2 + x;
+    f.y = height/2 + y;
+    f.theta = theta;
+    n++;
+  }
 }
 
 void draw() {
   background(0);
-  for (Friend f: friends) {
+  for (Friend f : allfriends.values()) {
     f.render();
   }
 }
 
-void createFriends(JSONArray json) {
-  for (int i=0; i<json.size(); i++) {
-    JSONObject f = json.getJSONObject(i);
-    String name = f.getString("name");
-    String id = f.getString("id");
-    JSONArray jsonArray = f.hasKey("mutualfriends") ? f.getJSONObject("mutualfriends").getJSONArray("data") : new JSONArray();
-    friends.add(new Friend(name, id, jsonArray));
-  }
-}
-
-void connectFriends() {
-  for (Friend f1: friends) {
-    for (int i=0; i<f1.json.size(); i++) {
-      for (Friend f2: friends) {
-        if (f2.id.equals(f1.json.getJSONObject(i).getString("id"))) {
-          f1.friends.add(f2);
-        }
-      }
-    }
-  }
-}
-
-void positionFriends() {
-  for (int i=0; i<friends.size(); i++) {
-    float theta = map(i, 0, friends.size(), 0, TWO_PI);
-    friends.get(i).rot = theta;
-    float x = cos(theta) * radius;
-    float y = sin(theta) * radius;
-    friends.get(i).pos = new PVector(width/2 + x, height/2 + y);
-  }
-}
