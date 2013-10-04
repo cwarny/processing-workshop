@@ -7,19 +7,19 @@ class Friend {
   float x;
   float y;
   float theta;
-  int r = 5;
+  int d = 5;
 
   Friend(String myName, String myId, JSONArray myJson) {
     name = myName;
     id = myId;
     json = myJson;
-    x = random(width);
-    y = random(height);
+    connectToFriends();
   }
 
   void render() {
     stroke(0);
-    ellipse(x, y, r, r);
+    fill(255);
+    ellipse(x, y, d, d);
     if (mouseOver()) {
       fill(253, 141, 60);
       drawName();
@@ -43,7 +43,7 @@ class Friend {
   }
 
   boolean mouseOver() {
-    if (mouseX < x + r/2 && mouseX > x - r/2 && mouseY < y + r/2 && mouseY > y - r/2) {
+    if (mouseX < x + d/2 && mouseX > x - d/2 && mouseY < y + d/2 && mouseY > y - d/2) {
       return true;
     }
     return false;
@@ -53,7 +53,7 @@ class Friend {
     pushMatrix();
     translate(x, y);
     rotate(theta);
-    text(name, 0, 0);
+    text(name, 5, 0);
     popMatrix();
   }
 }

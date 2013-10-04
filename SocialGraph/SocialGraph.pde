@@ -2,8 +2,19 @@ HashMap<String, Friend> allfriends = new HashMap<String, Friend>();
 float radius = 250;
 
 void setup() {
-  size(840, 600);
+  size(962,502);
+  setupFriendsObjects();
+  setupFriendsPositions();
+}
 
+void draw() {
+  background(0);
+  for (Friend f : allfriends.values()) {
+    f.render();
+  }
+}
+
+void setupFriendsObjects() {
   JSONObject json = loadJSONObject("data.json");
   JSONObject friends = json.getJSONObject("friends");
   JSONArray data = friends.getJSONArray("data");
@@ -18,11 +29,9 @@ void setup() {
     Friend f = new Friend(name, id, mutualfriends);
     allfriends.put(id, f);
   }
+}
 
-  for (Friend f : allfriends.values()) {
-    f.connectToFriends();
-  }
-
+void setupFriendsPositions() {
   int n = 0;
   for (Friend f : allfriends.values()) {
     float theta = map(n, 0, allfriends.size(), 0, TWO_PI);
@@ -32,13 +41,6 @@ void setup() {
     f.y = height/2 + y;
     f.theta = theta;
     n++;
-  }
-}
-
-void draw() {
-  background(0);
-  for (Friend f : allfriends.values()) {
-    f.render();
   }
 }
 
